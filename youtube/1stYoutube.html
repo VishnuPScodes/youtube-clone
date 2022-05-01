@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #search_result{
+          display: grid;
+          grid-template-columns: repeat(4,390px);
+          grid-gap: 5px;
+          width: 95%;
+          /* border: 1px solid red;
+          height: 1000px; */
+         
+         
+      }
+      #navbar{
+          height: 50px;
+          display: flex;
+      }
+      #video{
+          height: 40px;
+          width: 700px;
+          margin-left: 150px;
+          padding-left: 10px;
+          font-size: 20px;
+      }
+      #button{
+        height: 45px;
+        width: 75px;
+      }
+      #main{
+        display: flex;
+      }
+      #leftbar{
+           width: 5.5%;
+           height: 1000px;
+           border: 1px solid green;
+      }
+      #youtubelogo{
+          padding-left: 90px;
+      }
+      #tags{
+          height: 60px;
+          width: 1485px;
+          border: 1px solid blue;
+      }
+      #search{
+          border: 1px solid green;
+          width: 95%;
+          height: 1000px;
+      }
+      #tags>button{
+        width: 200px;
+        font-style: normal;
+          height: 40px;
+          text-align: center;
+          border-radius: 8px;
+          margin-top:10px;
+          font-size: 14px;
+          font-family: Roboto, Arial, sans-serif;
+          line-height: 20px;
+          font-weight: 400;
+          color: #030303;
+          
+      }
+      #button2{
+        height: 45px;
+        width: 75px;
+        margin-left: 10px;
+      }
+      #leftbar>button{
+          width: 100%;
+          height: 8%;
+          background-color: white;
+          border: 0px;
+      }
+      #leftbar>button:hover{
+          background-color: blanchedalmond;
+      }
+      #mainDiv{
+        display: grid;
+          grid-template-columns: repeat(4,390px);
+          grid-gap: 5px;
+          width: 95%;
+      }
+    </style>
+</head>
+<body>
+   
+             <div id="navbar" >
+                 <img width="135px" id="youtubelogo" height="80%" src="youtube.png" >
+                <input id="video" placeholder="Search"  type="text">
+                <button id="button" onclick="searchVideo()"><img height="25px" src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/2x/external-search-ui-dreamstale-lineal-dreamstale.png" ></button><button id="button2" ><img height="80%" width="80%" src="icons2.png" > </button>
+             </div>
+            <div id="main"> 
+                <div id="leftbar" >
+                    <button> 
+                        <img width="50%" src="https://img.icons8.com/ios-filled/2x/home.png" alt="" onclick="random()" >    Home </button><button>
+                            <img width="50%" src="https://img.icons8.com/material-outlined/2x/compass.png" alt="">Explore
+                        </button><button>
+                            <img width="50%" src="https://img.icons8.com/ios/2x/subscription.png" alt="">Subscriptions
+                        </button><button>
+                            <img width="50%"  src="https://img.icons8.com/ios/2x/library.png" alt="">Library
+                        </button><button>
+                            <img width="50%" src="https://img.icons8.com/ios-glyphs/2x/payment-history.png" alt="">Hostory
+                        </button>
+                </div>
+                
+               
+                    <div id="search">
+                        <div id="tags" >
+                            <button>All</button><button id="allu" >Allu Arjun</button><button id="bollywood" >Bollywood</button><button>T-series</button><button>Comedies</button><button>Musics</button><button>Mantras</button>
+                        </div>
+                        <div id="mainDiv" ></div>
+                        <div id="search_result"></div>
+                    </div> 
+                   
+                   
+                
+                   
+            </div>
+           
+            <!-- <iframe width="706" height="397" src="https://www.youtube.com/embed/TIQ5hrfermg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+</body>
+</html>
+<script>
+  
+   // let url=`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video_query}&type=video&key=AIzaSyA_JpA0VAZy83-FtnUJKMinPYV0DYLNF5A`
+    const searchResult=document.getElementById('search_result');
+    const mainDiv=document.getElementById("mainDiv")
+    
+  async  function random(){
+   
+   
+        console.log("working")
+        try{
+            console.log("s2")
+            let res=await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=&type=video&key=AIzaSyCWADoWG5sAjSfz5bE44wZ78uwTvR_9a-o&maxResults=20`)
+            let data2=await res.json();
+            console.log('s3')
+            let videos2=data2.items;
+            console.log('video', videos2)
+             append2(videos2);
+
+        }catch(err){
+            console.log("err",err);
+
+
+        }
+       
+    }
+    
+    function append2(items){
+        let div2=document.createElement("div")
+       
+        console.log('here',here)
+
+        items.forEach(({snippet,'id':{videoId}})=>{
+            console.log('snpppt',snippet)
+            let tittle=doecument.createElement('p');
+            let div=document.createElement('div');
+
+        })
+
+        for(let i=0;i<here.length;i++){
+            let keyhere=here[i].videoId
+
+            let title2=document.createElement('p');
+        title2.innerText=here[i].snippet.title
+
+        let thumbnails2=document.createElement('img');
+        thumbnails2.src=here[i].snippet.thumbnails.medium.url;
+        div2.append(thumbnails2,title2)
+        searchResult.append(div2)
+        
+
+        let data2send=
+
+        
+        div2.onclick=()=>{
+            showVideo();
+        }
+
+        
+        
+        
+
+
+        }
+    }
+    random();
+
+
+
+
+
+
+
+
+
+
+    async function searchVideo(){
+        mainDiv.textContent="";
+        searchResult.textContent="";
+        try{ 
+        let video_query=document.getElementById('video').value;
+        let response= await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video_query}&type=video&key=AIzaSyCWADoWG5sAjSfz5bE44wZ78uwTvR_9a-o&maxResults=20`);
+        let data = await response.json();
+        console.log('data',data);
+
+        let videos=data.items;
+
+
+        appendVideo(videos);
+        }catch(err){
+            console.log('err',err)
+        }
+
+    }
+    const appendVideo=(items)=>{
+        console.log(('items',items))
+        items.forEach(({snippet,id:{videoId}})=>{
+
+
+           let div=document.createElement('div'); 
+           
+          // let vId=el.id.videoId;
+            
+           console.log('id',snippet);
+
+        //    let iframe=document.createElement('iframe');
+        //    iframe.src=`https://www.youtube.com/embed/${videoId}`;
+        //    iframe.height="215"
+        //    iframe.width="460";
+        //    iframe.setAttribute("allowfullscreen",true)
+        //    searchResult.appendChild(iframe)
+       
+
+        let title=document.createElement('p');
+        title.innerText=snippet.title
+
+        let thumbnails=document.createElement('img');
+        thumbnails.src=snippet.thumbnails.medium.url
+
+
+        let data_to_send={
+            snippet,
+            videoId
+        }
+
+        div.onclick=()=>{
+            showVideo(data_to_send);
+        }
+
+
+      
+       
+
+        div.append(thumbnails,title);
+        searchResult.append(div)
+
+        });
+    }
+    function showVideo(data){
+        localStorage.setItem('clickedVideo',JSON.stringify(data))
+        console.log("yes")
+
+        window.location.href="video.html"
+    }
+        
+    
+</script>
